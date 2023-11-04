@@ -11,12 +11,15 @@
 #   IMPORTS   #
 #-------------#
 
+import os
+from dotenv import load_dotenv
 from typing import Annotated
 from fastapi import Body,FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+
 #------------------------#
-#   INITIALIZE FastAPI   #
+#   INITIALIZE FASTAPI   #
 #------------------------#
 
 app = FastAPI()                                     # Creates FastAPI App
@@ -28,8 +31,15 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
+)                                                   # Allows cross-origin requests
 
+
+#-----------------------#
+#   INITIALIZE OPENAI   #
+#-----------------------#
+
+load_dotenv()                                       # Loads environment variables from a .env file if present for local development
+OPENAI_KEY = os.getenv('OPENAI_KEY')                # Imports OpenAI key from environment variable
 
 #---------------------------#
 #   SANITY CHECK ENDPOINT   #
