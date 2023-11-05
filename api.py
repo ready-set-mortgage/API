@@ -63,10 +63,10 @@ class UserStats(BaseModel):
 #   SANITY CHECK ENDPOINT   #
 #---------------------------#
 
-@app.get("/sanity_check")                            # Sanity check endpoint to ensure server is accessible
+@app.get("/")                            # Sanity check endpoint to ensure server is accessible
 async def sanity_check():
     return {
-        "message": "Get request successful"
+        "message": "Welcome to Ready, Set, Mortgage's API! To read more about the available endpoints, visit https://api.readysetmortgage.co/docs"
     }
 
 
@@ -106,6 +106,8 @@ async def readiness(userstats: UserStats):
 #   AI FEEDBACK ENDPOINT   #
 #--------------------------#
 
-@app.post("/ai-feedback")
-async def readiness(userstats: UserStats):
-    pass
+@app.post("/ai_feedback")
+async def ai_feedback(userstats: UserStats):
+    return {
+        'response': 'Placeholder'
+    }
