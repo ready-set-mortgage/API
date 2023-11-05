@@ -57,6 +57,7 @@ class UserStats(BaseModel):
     est_monthly_mortgage_payment: float
     down_payment_amount: float
     credit_score: int
+    loan_amount: float | None
 
 
 #---------------------------#
@@ -75,7 +76,7 @@ async def sanity_check():
 #---------------------------------#
 
 @app.post("/readiness")
-async def readiness():
+async def readiness(userstats: UserStats):
     return {
         'readiness': 'Placeholder',
         'breakdown': {
