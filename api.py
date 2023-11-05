@@ -43,15 +43,58 @@ app.add_middleware(
 load_dotenv()                                       # Loads environment variables from a .env file if present for local development
 OPENAI_KEY = os.getenv('OPENAI_KEY')                # Imports OpenAI key from environment variable
 
+
+#-----------------------#
+#   DEFINE DATA MODEL   #
+#-----------------------#
+
+class UserStats(BaseModel):
+    gross_monthly_income: float
+    monthly_car_payment: float
+    monthly_credit_card_payment: float
+    student_loan_payment: float
+    home_appraised_value: float
+    est_monthly_mortgage_payment: float
+    down_payment_amount: float
+    credit_score: int
+
+
 #---------------------------#
 #   SANITY CHECK ENDPOINT   #
 #---------------------------#
 
-@app.get("/sanitycheck")                            # Sanity check endpoint to ensure server is accessible
+@app.get("/sanity_check")                            # Sanity check endpoint to ensure server is accessible
 async def sanity_check():
     return {
         "message": "Get request successful"
     }
 
 
+#---------------------------------#
+#   MORTGAGE READINESS ENDPOINT   #
+#---------------------------------#
 
+@app.post("/readiness")
+async def readiness():
+    return {
+        'readiness': 'Placeholder',
+        'breakdown': {
+            'credit': {
+                'individual_readiness': 'Placeholder',
+                'score': -1.0
+            },
+            'ltv': {
+                'individual_readiness': 'Placeholder',
+                'score': -1.0
+            },
+            'dti': {
+                'individual_readiness': 'Placeholder',
+                'score': -1.0
+            },
+            'fedti': {
+                'individual_readiness': 'Placeholder',
+                'score': -1.0
+            }
+        },
+        'notices': ['Placeholder']
+    }
