@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="">
-    <img src="h" height="96">
+  <a href="https://readysetmortgage.co">
+    <img src="https://raw.githubusercontent.com/ready-set-mortgage/ready-set-mortgage-frontend/main/src/Assets/logo.svg" height="96">
     <h1 align="center">Ready, Set, Mortgage! — API</h1>
   </a>
 </p>
@@ -10,25 +10,20 @@
 </h3>
 
 <p align="center">
-    <a href=""><strong>Site</strong></a>  ·
-    <a href=""><strong>Frontend Code</strong></a>  ·
-  <a href=""><strong>API Code</strong></a> ·
-  <a href=""><strong>API Documentation</strong></a>
+    <a href="https://readysetmortgage.co"><strong>Site</strong></a>  ·
+    <a href="https://github.com/ready-set-mortgage/ready-set-mortgage-frontend"><strong>Frontend Code</strong></a>  ·
+  <a href="https://github.com/ready-set-mortgage/ready-set-mortgage-api"><strong>API Code</strong></a> ·
+  <a href="https://api.readysetmortgage.co/docs"><strong>API Documentation</strong></a>
 </p>
 <br/>
 
-Write a summary here!
+View the API reference at [api.readysetmortgage.co/docs](https://api.readysetmortgage.co/docs)!
 
 
 ## Technologies
 
-This API is built with the amazing [FastAPI](https://fastapi.tiangolo.com/) Python library.
+This API is built with the amazing [FastAPI](https://fastapi.tiangolo.com/) Python library. It also leverages OpenAI's GPT 3.5 Turbo large language model.
 
-
-## Credits
-
-
-
-## Terms of use
+## License
 
 Ready, Set, Mortgage! is licensed under the **MIT** license.
