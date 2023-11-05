@@ -57,7 +57,6 @@ class UserStats(BaseModel):
     est_monthly_mortgage_payment: float
     down_payment_amount: float
     credit_score: int
-    loan_amount: float | None = None
 
 
 #---------------------------#
