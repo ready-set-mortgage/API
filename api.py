@@ -16,6 +16,8 @@ from dotenv import load_dotenv
 from typing import Annotated
 from fastapi import Body,FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import openai
 
 
 #------------------------#
@@ -47,7 +49,9 @@ OPENAI_KEY = os.getenv('OPENAI_KEY')                # Imports OpenAI key from en
 
 @app.get("/sanitycheck")                            # Sanity check endpoint to ensure server is accessible
 async def sanity_check():
-    return {"message": "Get request successful"}
+    return {
+        "message": "Get request successful"
+    }
 
 
 
