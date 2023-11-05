@@ -77,6 +77,8 @@ async def sanity_check():
 
 @app.post("/readiness")
 async def readiness(userstats: UserStats):
+    notices = []
+
     return {
         'readiness': 'Placeholder',
         'breakdown': {
@@ -97,5 +99,14 @@ async def readiness(userstats: UserStats):
                 'score': -1.0
             }
         },
-        'notices': ['Placeholder']
+        'notices': notices
     }
+
+
+#--------------------------#
+#   AI FEEDBACK ENDPOINT   #
+#--------------------------#
+
+@app.post("/ai-feedback")
+async def readiness(userstats: UserStats):
+    pass
