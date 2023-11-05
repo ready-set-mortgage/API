@@ -76,36 +76,7 @@ async def sanity_check():
 
 @app.post("/readiness")
 async def readiness(userstats: UserStats):                                  # Declares an empty List of notices
-
-    monthly_debt = calculate_monthly_debt(userstats.monthly_car_payment, userstats.monthly_credit_card_payment, userstats.est_monthly_mortgage_payment, userstats.student_loan_payment)
-    credit_score = userstats.credit_score
-    ltv = calculate_ltv(userstats.home_appraised_value, userstats.down_payment_amount)
-    dti = calculate_dti(monthly_debt, userstats.gross_monthly_income)
-    fedti = calculate_fedti(userstats.est_monthly_mortgage_payment, userstats.gross_monthly_income)
-    notices = assess_notices(credit_score, dti, ltv, fedti)
-
-    return {
-        'readiness': compare_readiness(credit_score, dti, ltv, fedti),
-        'breakdown': {
-            'credit': {
-                'individual_readiness': compare_credit(credit_score),
-                'score': credit_score
-            },
-            'ltv': {
-                'individual_readiness': compare_ltv(ltv),
-                'score': ltv
-            },
-            'dti': {
-                'individual_readiness': compare_dti(dti),
-                'score': dti
-            },
-            'fedti': {
-                'individual_readiness': compare_fedti(fedti),
-                'score': fedti
-            }
-        },
-        'notices': notices
-    }
+    return determine_response(userstats)
 
 
 #--------------------------#
@@ -205,3 +176,34 @@ def assess_notices(credit_score, dti, ltv, fedti) -> list:
         notices.append("The percentage of that debt going toward mortgages, your \"front-end debt\", is too high to be considered for a loan. Generally, the ratio of your front-end debt to income should not exceed 28%.")
     
     return notices
+
+def determine_response(userstats: UserStats) -> dict:
+    monthly_debt = calculate_monthly_debt(userstats.monthly_car_payment, userstats.monthly_credit_card_payment, userstats.est_monthly_mortgage_payment, userstats.student_loan_payment)
+    credit_score = userstats.credit_score
+    ltv = calculate_ltv(userstats.home_appraised_value, userstats.down_payment_amount)
+    dti = calculate_dti(monthly_debt, userstats.gross_monthly_income)
+    fedti = calculate_fedti(userstats.est_monthly_mortgage_payment, userstats.gross_monthly_income)
+    notices = assess_notices(credit_score, dti, ltv, fedti)
+
+    return {
+        'readiness': compare_readiness(credit_score, dti, ltv, fedti),
+        'breakdown': {
+            'credit': {
+                'individual_readiness': compare_credit(credit_score),
+                'score': credit_score
+            },
+            'ltv': {
+                'individual_readiness': compare_ltv(ltv),
+                'score': ltv
+            },
+            'dti': {
+                'individual_readiness': compare_dti(dti),
+                'score': dti
+            },
+            'fedti': {
+                'individual_readiness': compare_fedti(fedti),
+                'score': fedti
+            }
+        },
+        'notices': notices
+    }
