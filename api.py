@@ -25,7 +25,7 @@ import openai
 #------------------------#
 
 app = FastAPI()                                     # Creates FastAPI App
-origins = ["http://readysetmortgage.co", "https://readysetmortgage.co", "*"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,

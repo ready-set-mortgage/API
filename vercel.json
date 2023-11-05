@@ -8,16 +8,5 @@
     ],
     "env": {
         "APP_MODULE": "api:app"
-    },
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "access-control-allow-origin",
-                    "value": "*"
-                }
-            ]
-        }
-    ]
+    }
 }
